@@ -16,6 +16,7 @@ class Bus(models.Model):
     arrival_time = models.DateTimeField('Arrival_Time')
     departure_time = models.DateTimeField('Departure_Time')
     bus_image = CloudinaryField(blank=False)
+    seatlimit = models.IntegerField('Seat_Limit')
 
     def __str__(self):
         return "{0} | {1} | {2} | {3}".format(self.bus_name, self.bus_number, self.start_point, self.destination)
@@ -37,3 +38,21 @@ class CustomUser(AbstractUser):
 
     class Meta:
         db_table = 'CustomUser'
+
+class Seat(models.Model):
+    bus = models.ForeignKey(Bus, related_name= 'related_bus',blank=True, null=True,on_delete=models.SET_NULL)
+    seat_name = models.CharField('Seat',max_length=5,blank=False,null=False,default=None)
+    seat_number = models.CharField('Seat Number',max_length=5,null=False,blank=False,default=None)
+    
+
+    class Meta(object):
+        db_table = 'seat'
+        verbose_name = ('seat')
+
+class Place(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=80)
+
+class Restaurant(Place):
+    serves_hot_dogs = models.BooleanField(default=False)
+    serves_pizza = models.BooleanField(default=False)

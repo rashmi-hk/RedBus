@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import Bus
+from .models import Bus,Restaurant
 
 
 class BusSerializer(serializers.ModelSerializer):
@@ -10,4 +10,13 @@ class BusSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bus
+        fields = "__all__"
+
+class RestaurantSerializer(serializers.ModelSerializer):
+    """
+    Client model serializer
+    """
+
+    class Meta:
+        model = Restaurant
         fields = "__all__"
