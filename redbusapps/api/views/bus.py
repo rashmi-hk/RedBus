@@ -62,7 +62,7 @@ class BusAPIList(APIView):
 #         queryset = Bus.objects.all()
 #         serializer_class = BusSerializer
 
-
+#comment
     def get(self, request):
         print("inside bus get")
         try:
